@@ -1,4 +1,4 @@
-# AssoShare V1
+# AssoShare V3
 
 Prototype web léger pour mutualiser le matériel des associations de Val-sur-Loire.
 
@@ -12,15 +12,28 @@ python3 -m http.server 4173
 
 Puis ouvrir <http://localhost:4173>.
 
-## Fonctionnalités V1
+## Fonctionnalités V2/V3
 
 - consultation anonyme du catalogue ;
 - recherche instantanée côté client et filtre par catégorie ;
 - fiche détaillée accessible au clavier ;
 - contact direct par e-mail avec objet prérempli ;
-- dépôt d’annonce en quatre informations, conservé localement pour la démonstration.
+- dépôt d’annonce avec coordonnées, quartier et période de disponibilité, conservé localement pour la démonstration.
+- filtre par quartier et date de disponibilité ;
+- favoris conservés localement, sans compte ;
+- gestion des annonces locales : consultation et suppression ;
+- dates de disponibilité pour chaque matériel ;
+- filtres combinables avec compteur accessible aux lecteurs d’écran ;
+- interface responsive renforcée pour mobile et clavier.
+- contact simulé dans la fiche matériel, sans ouvrir de client e-mail ;
+- prévisualisation d'une annonce avant publication ;
+- modification, suppression et persistance locale des annonces créées ;
+- confirmations visibles pour les contacts et les publications.
 
-Le dépôt est volontairement simulé côté navigateur : un endpoint serveur devra remplacer le stockage `localStorage` pour envoyer réellement le lien privé de modification.
+Le dépôt, les favoris, les contacts et la gestion des annonces sont volontairement
+simulés côté navigateur avec `localStorage`. Aucun message n'est envoyé et aucune
+annonce n'est publiée sur un serveur. Un endpoint serveur pourra remplacer cette
+simulation plus tard.
 
 ## Validation écoresponsable
 

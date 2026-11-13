@@ -80,7 +80,23 @@
             <option value="Cuisine">Cuisine</option>
           </select>
         </label>
+        <label class="select-wrap">
+          <span class="sr-only">Filtrer par quartier</span>
+          <select id="neighborhood">
+            <option value="">Tous les quartiers</option>
+            <option value="Centre">Centre</option>
+            <option value="Nord">Nord</option>
+            <option value="Est">Est</option>
+            <option value="Sud">Sud</option>
+            <option value="Ouest">Ouest</option>
+          </select>
+        </label>
+        <label class="date-filter">
+          <span>Disponible à partir du</span>
+          <input id="available-date" type="date">
+        </label>
       </form>
+      <p class="filter-status" id="filter-status" role="status" aria-live="polite"></p>
       <p class="no-results" id="no-results" hidden>Aucun matériel ne correspond à votre recherche. <button type="button" id="clear-search">Effacer les filtres</button></p>
       <div class="cards-grid" id="equipment-list"></div>
     </section>
@@ -113,10 +129,25 @@
         </div>
         <label for="email">Votre e-mail <span>*</span><input id="email" name="email" type="email" required placeholder="association@exemple.fr"></label>
         <label for="phone">Téléphone <span>*</span><input id="phone" name="phone" type="tel" required placeholder="06 00 00 00 00"></label>
-        <button class="button button-primary" type="submit">Publier l’annonce <span aria-hidden="true">↗</span></button>
+        <label for="share-neighborhood">Quartier <span>*</span><select id="share-neighborhood" name="neighborhood" required><option value="">Choisir…</option><option>Centre</option><option>Nord</option><option>Est</option><option>Sud</option><option>Ouest</option></select></label>
+        <div class="form-row">
+          <label for="available-from">Disponible du <span>*</span><input id="available-from" name="availableFrom" type="date" required></label>
+          <label for="available-to">Au <span>*</span><input id="available-to" name="availableTo" type="date" required></label>
+        </div>
+        <div class="form-actions">
+          <button class="button button-secondary" id="preview-announcement" type="button">Prévisualiser</button>
+          <button class="button button-primary" id="submit-announcement" type="submit">Publier l’annonce <span aria-hidden="true">↗</span></button>
+        </div>
         <p class="form-privacy">Vos coordonnées servent uniquement à être contacté·e pour ce prêt.</p>
         <p class="form-success" id="form-success" role="status" hidden></p>
+        <div class="announcement-preview" id="announcement-preview" aria-live="polite" hidden></div>
       </form>
+      <aside class="announcements" aria-labelledby="announcements-title">
+        <h3 id="announcements-title">Mes annonces</h3>
+        <p class="form-privacy">Les annonces sont conservées sur cet appareil dans cette démonstration.</p>
+        <ul id="announcements-list"></ul>
+        <p id="announcements-empty">Aucune annonce locale pour le moment.</p>
+      </aside>
     </section>
   </main>
 
@@ -136,9 +167,28 @@
       <h2 id="dialog-title"></h2>
       <p id="dialog-description"></p>
       <div class="detail-meta"><span id="dialog-owner"></span><span id="dialog-location"></span></div>
-      <a class="button button-primary full-button" id="dialog-contact">Contacter l'association <span aria-hidden="true">↗</span></a>
+      <button class="button button-primary full-button" id="dialog-contact" type="button">Contacter l'association <span aria-hidden="true">↗</span></button>
+      <form class="contact-form" id="contact-form" hidden>
+        <div class="contact-details">
+          <strong id="contact-association"></strong>
+          <span id="contact-phone"></span>
+          <span id="contact-email-address"></span>
+        </div>
+        <label for="contact-name">Votre prénom
+          <input id="contact-name" name="name" required placeholder="Ex. Marie">
+        </label>
+        <label for="contact-email">Votre e-mail
+          <input id="contact-email" name="email" type="email" required placeholder="marie@exemple.fr">
+        </label>
+        <label for="contact-message">Votre message
+          <textarea id="contact-message" name="message" rows="3" required placeholder="Bonjour, je souhaiterais emprunter ce matériel..."></textarea>
+        </label>
+        <button class="button button-primary full-button" type="submit">Envoyer la demande</button>
+        <p class="form-success" id="contact-success" role="status" hidden></p>
+      </form>
+      <button class="button dialog-favorite" id="dialog-favorite" type="button" aria-pressed="false">☆ Ajouter aux favoris</button>
     </div>
   </dialog>
-  <script src="app.js" defer></script>
+  <script src="app.js?v=4" defer></script>
 </body>
 </html>
